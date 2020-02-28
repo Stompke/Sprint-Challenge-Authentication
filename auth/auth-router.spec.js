@@ -57,7 +57,7 @@ describe ('API Login/Register functionality', () => {
         })
     })
 
-    it('Should failt deleting the user for it does not exist', () => {
+    it('Should fail deleting the user for it does not exist', () => {
         return request(server)
         .delete(`/api/auth/${testId}`)
         .then(res => {
