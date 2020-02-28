@@ -23,12 +23,12 @@ router.post('/register', (req, res) => {
   user.password = hash;
 
   Users.addUser(user)
-  .then(added => {
-    res.status(201).json(added)
-  })
-  .catch(err => {
-    res.status(500).json({ error: "Could not add user" });
-  })
+    .then(added => {
+      res.status(201).json(added)
+    })
+    .catch(err => {
+      res.status(500).json({ error: "Could not add user" });
+    })
 });
 
 router.post('/login', (req, res) => {
@@ -50,8 +50,19 @@ router.post('/login', (req, res) => {
     .catch(err => {
       res.status(500).json({ error: "Could not login" });
     })
-
 });
+
+router.delete('/:id', (req, res) => {
+  
+  Users.remove(req.params.id)
+  .then(deleted => {
+    res.status(200).json(deleted)
+  })
+  .catch(err => {
+    res.status(500).json({ error: "Could not delete user" })
+  })
+
+})
 
 module.exports = router;
 
